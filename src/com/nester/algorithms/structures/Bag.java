@@ -68,13 +68,13 @@ public class Bag<Item> implements Iterable<Item> {
     }
 
     /**
-     * @param <Item>
+     * @param <IteratorItem>
      */
-    private class ListIterator<Item> implements Iterator<Item> {
+    private class ListIterator<IteratorItem> implements Iterator<IteratorItem> {
 
-        private Node<Item> current;
+        private Node<IteratorItem> current;
 
-        public ListIterator(Node<Item> current) {
+        public ListIterator(Node<IteratorItem> current) {
             this.current = current;
         }
 
@@ -84,11 +84,11 @@ public class Bag<Item> implements Iterable<Item> {
         }
 
         @Override
-        public Item next() {
+        public IteratorItem next() {
             if (!hasNext()) {
                 throw new NoSuchElementException();
             }
-            Item item = current.item;
+            IteratorItem item = current.item;
             current = current.next;
             return item;
         }
