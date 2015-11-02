@@ -1,6 +1,4 @@
 apply plugin: 'java'
-apply plugin: 'cobertura'
-apply plugin: 'com.github.kt3k.coveralls'
 
 buildscript {
     repositories {
@@ -13,6 +11,9 @@ buildscript {
     }
 
 }
+
+apply plugin: 'cobertura'
+apply plugin: 'com.github.kt3k.coveralls'
 
 repositories {
     mavenCentral()
