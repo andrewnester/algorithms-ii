@@ -2,8 +2,11 @@ package com.nester.algorithms.structures;
 
 import org.junit.Test;
 import org.junit.Assert;
+
 import java.util.Arrays;
+import java.util.Iterator;
 import java.util.List;
+import java.util.NoSuchElementException;
 
 public class BagTest {
 
@@ -31,7 +34,7 @@ public class BagTest {
         List<Integer> testNumbers = Arrays.asList(10, 21, 32, 43, 54);
         Bag<Integer> bag = new Bag<>();
 
-        for(Integer number: testNumbers) {
+        for (Integer number : testNumbers) {
             bag.add(number);
         }
 
@@ -42,5 +45,22 @@ public class BagTest {
         }
 
     }
+
+    @Test(expected = NoSuchElementException.class)
+    public void iterateEmptyBag() {
+        Bag<Integer> bag = new Bag<>();
+
+        Iterator<Integer> itr = bag.iterator();
+        itr.next();
+    }
+
+    @Test(expected = UnsupportedOperationException.class)
+    public void removeFromBag() {
+        Bag<Integer> bag = new Bag<>();
+
+        Iterator<Integer> itr = bag.iterator();
+        itr.remove();
+    }
+
 
 }

@@ -2,13 +2,15 @@ package com.nester.algorithms.undirectional;
 
 import com.nester.algorithms.structures.Graph;
 
+import java.util.LinkedList;
+import java.util.Queue;
 import java.util.Stack;
 
 /**
- * Class DeepFirstSearch
- * Implements deep-first search algorithm
+ * Class BreadthFirstSearch
+ * Implements breadth-first search algorithms on graphs
  */
-public class DeepFirstSearch implements GraphSearchInterface {
+public class BreadthFirstSearch implements GraphSearchInterface {
 
     private int source;
 
@@ -16,12 +18,12 @@ public class DeepFirstSearch implements GraphSearchInterface {
 
     private int[] edgeTo;
 
-    public DeepFirstSearch(Graph graph, int source) {
+    public BreadthFirstSearch(Graph graph, int source) {
         this.source = source;
         marked = new boolean[graph.getVertexCount()];
         edgeTo = new int[graph.getVertexCount()];
 
-        dfs(graph, source);
+        bfs(graph, source);
     }
 
     /**
@@ -57,18 +59,24 @@ public class DeepFirstSearch implements GraphSearchInterface {
     }
 
     /**
-     * Runs deep-first search
+     * Runs breadth-first search
      *
      * @param graph  Graph to be processed
      * @param source Vertex what path should be found for
      */
-    private void dfs(Graph graph, int source) {
+    private void bfs(Graph graph, int source) {
+        Queue<Integer> queue = new LinkedList<>();
+        queue.add(source);
         marked[source] = true;
 
-        for (int vertex : graph.getAdjacentVertexes(source)) {
-            if (!marked[vertex]) {
-                dfs(graph, vertex);
-                edgeTo[vertex] = source;
+        while (!queue.isEmpty()) {
+            int baseVertex = queue.remove();
+            for (int vertex : graph.getAdjacentVertexes(baseVertex)) {
+                if (!marked[vertex]) {
+                    queue.add(vertex);
+                    marked[vertex] = true;
+                    edgeTo[vertex] = baseVertex;
+                }
             }
         }
     }

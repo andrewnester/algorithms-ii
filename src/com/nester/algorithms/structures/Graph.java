@@ -8,7 +8,7 @@ import java.util.ArrayList;
 
 /**
  * Class Graph
- * <p>
+ * <p/>
  * Implement Adjacency-lists graph representation
  */
 public class Graph {
@@ -25,28 +25,25 @@ public class Graph {
         }
     }
 
-    public Graph(InputStream inputStream) {
+    public Graph(InputStream inputStream) throws IOException {
 
         vertexCount = 0;
         adjacentVertexes = new ArrayList<>();
         BufferedReader in = new BufferedReader(new InputStreamReader(inputStream));
-        try {
-            String line;
-            while ((line = in.readLine()) != null) {
-                String[] splittedLine = line.split(" ");
-                if (splittedLine.length == 1) {
-                    vertexCount = Integer.parseInt(splittedLine[0]);
-                    for (int i = 0; i < vertexCount; i++) {
-                        adjacentVertexes.add(new Bag<Integer>());
-                    }
-                } else {
-                    addEdge(Integer.parseInt(splittedLine[0]), Integer.parseInt(splittedLine[1]));
+        String line;
+        while ((line = in.readLine()) != null) {
+            String[] splittedLine = line.split(" ");
+            if (splittedLine.length == 1) {
+                vertexCount = Integer.parseInt(splittedLine[0]);
+                for (int i = 0; i < vertexCount; i++) {
+                    adjacentVertexes.add(new Bag<Integer>());
                 }
-
+            } else {
+                addEdge(Integer.parseInt(splittedLine[0]), Integer.parseInt(splittedLine[1]));
             }
-        } catch (IOException e) {
-            e.printStackTrace();
+
         }
+
     }
 
     /**

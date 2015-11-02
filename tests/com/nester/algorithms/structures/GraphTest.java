@@ -3,7 +3,9 @@ package com.nester.algorithms.structures;
 import org.junit.Assert;
 import org.junit.Test;
 
+import java.io.BufferedInputStream;
 import java.io.ByteArrayInputStream;
+import java.io.IOException;
 import java.nio.charset.StandardCharsets;
 import java.util.ArrayList;
 import java.util.List;
@@ -13,9 +15,23 @@ public class GraphTest {
     @Test
     public void createGraphFromInputStream() {
         String testString = "5\n0 1\n0 3\n1 3\n1 4\n3 4\n";
-        Graph graph = new Graph(new ByteArrayInputStream(testString.getBytes(StandardCharsets.UTF_8)));
 
-        testGraph(graph);
+        try {
+            Graph graph = new Graph(new ByteArrayInputStream(testString.getBytes(StandardCharsets.UTF_8)));
+            testGraph(graph);
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
+
+    }
+
+    @Test(expected = IOException.class)
+    public void createGraphFromInputStreamWithIOException() throws IOException {
+        String testString = "5\n0 1\n0 3\n1 3\n1 4\n3 4\n";
+
+        BufferedInputStream is = new BufferedInputStream(new ByteArrayInputStream(testString.getBytes(StandardCharsets.UTF_8)));
+        is.close();
+        Graph graph = new Graph(is);
     }
 
     @Test
@@ -47,7 +63,7 @@ public class GraphTest {
     private void testGraph(Graph graph) {
         Iterable<Integer> vertexes = graph.getAdjacentVertexes(0);
         List<Integer> adjacentVertexes = new ArrayList<>();
-        for(Integer vertex: vertexes) {
+        for (Integer vertex : vertexes) {
             adjacentVertexes.add(vertex);
         }
 
@@ -57,7 +73,7 @@ public class GraphTest {
 
         vertexes = graph.getAdjacentVertexes(1);
         adjacentVertexes = new ArrayList<>();
-        for(Integer vertex: vertexes) {
+        for (Integer vertex : vertexes) {
             adjacentVertexes.add(vertex);
         }
 
@@ -68,7 +84,7 @@ public class GraphTest {
 
         vertexes = graph.getAdjacentVertexes(2);
         adjacentVertexes = new ArrayList<>();
-        for(Integer vertex: vertexes) {
+        for (Integer vertex : vertexes) {
             adjacentVertexes.add(vertex);
         }
 
@@ -76,7 +92,7 @@ public class GraphTest {
 
         vertexes = graph.getAdjacentVertexes(3);
         adjacentVertexes = new ArrayList<>();
-        for(Integer vertex: vertexes) {
+        for (Integer vertex : vertexes) {
             adjacentVertexes.add(vertex);
         }
 
