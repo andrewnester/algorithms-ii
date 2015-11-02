@@ -1,37 +1,64 @@
 package com.nester.algorithms.structures;
 
+import java.io.BufferedReader;
+import java.io.IOException;
 import java.io.InputStream;
+import java.io.InputStreamReader;
+import java.util.ArrayList;
 
 /**
  * Class Graph
- *
+ * <p>
  * Implement Adjacency-lists graph representation
  */
 public class Graph {
 
-    private final int vertexCount;
+    private int vertexCount;
 
-    private Bag<Integer>[] adjacentVertexes;
+    private ArrayList<Bag<Integer>> adjacentVertexes;
 
     public Graph(int vertexCount) {
         this.vertexCount = vertexCount;
-        adjacentVertexes = (Bag<Integer>[]) new Bag[vertexCount];
+        adjacentVertexes = new ArrayList<>();
+        for (int i = 0; i < vertexCount; i++) {
+            adjacentVertexes.add(new Bag<>());
+        }
     }
 
     public Graph(InputStream inputStream) {
-        //TODO: need to be implemented
-        this.vertexCount = 0;
+
+        vertexCount = 0;
+        adjacentVertexes = new ArrayList<>();
+        BufferedReader in = new BufferedReader(new InputStreamReader(inputStream));
+        try {
+            String line;
+            while ((line = in.readLine()) != null) {
+                String[] splittedLine = line.split(" ");
+                if (splittedLine.length == 1) {
+                    vertexCount = Integer.parseInt(splittedLine[0]);
+                    for (int i = 0; i < vertexCount; i++) {
+                        adjacentVertexes.add(new Bag<>());
+                    }
+                } else {
+                    addEdge(Integer.parseInt(splittedLine[0]), Integer.parseInt(splittedLine[1]));
+                }
+
+            }
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
     }
 
     /**
      * Add new edge between 2 vertexes
      *
-     * @param firstVertex First vertex of the edge
+     * @param firstVertex  First vertex of the edge
      * @param secondVertex Second vertex of the edge
      */
-    public void addEdge(int firstVertex, int secondVertex) {
-        adjacentVertexes[firstVertex].add(secondVertex);
-        adjacentVertexes[secondVertex].add(firstVertex);
+    public void addEdge(int firstVertex, int secondVertex) throws IndexOutOfBoundsException {
+        adjacentVertexes.get(firstVertex).add(secondVertex);
+        adjacentVertexes.get(secondVertex).add(firstVertex);
+
     }
 
     /**
@@ -41,7 +68,7 @@ public class Graph {
      * @return Iterator to iterate over adjacent vertex
      */
     public Iterable<Integer> getAdjacentVertexes(int vertex) {
-        return adjacentVertexes[vertex];
+        return adjacentVertexes.get(vertex);
     }
 
     /**
@@ -49,18 +76,5 @@ public class Graph {
      */
     public int getVertexCount() {
         return vertexCount;
-    }
-
-    /**
-     *
-     * @return Edge counts
-     */
-    public int getEdgeCount() {
-        //TODO: need to be implemented
-        return 0;
-    }
-
-    public String toString() {
-        return "Graph{}";
     }
 }
