@@ -1,4 +1,4 @@
-package com.nester.algorithms.undirectional;
+package com.nester.algorithms.graphs.undirected;
 
 import com.nester.algorithms.structures.Graph;
 

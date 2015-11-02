@@ -1,16 +1,14 @@
-package com.nester.algorithms.undirectional;
+package com.nester.algorithms.graphs.undirected;
 
 import com.nester.algorithms.structures.Graph;
 
-import java.util.LinkedList;
-import java.util.Queue;
 import java.util.Stack;
 
 /**
- * Class BreadthFirstSearch
- * Implements breadth-first search algorithms on graphs
+ * Class DeepFirstSearch
+ * Implements deep-first search algorithm
  */
-public class BreadthFirstSearch implements GraphSearchInterface {
+public class DeepFirstSearch implements GraphSearchInterface {
 
     private int source;
 
@@ -18,12 +16,12 @@ public class BreadthFirstSearch implements GraphSearchInterface {
 
     private int[] edgeTo;
 
-    public BreadthFirstSearch(Graph graph, int source) {
+    public DeepFirstSearch(Graph graph, int source) {
         this.source = source;
         marked = new boolean[graph.getVertexCount()];
         edgeTo = new int[graph.getVertexCount()];
 
-        bfs(graph, source);
+        dfs(graph, source);
     }
 
     /**
@@ -59,24 +57,18 @@ public class BreadthFirstSearch implements GraphSearchInterface {
     }
 
     /**
-     * Runs breadth-first search
+     * Runs deep-first search
      *
      * @param graph  Graph to be processed
      * @param source Vertex what path should be found for
      */
-    private void bfs(Graph graph, int source) {
-        Queue<Integer> queue = new LinkedList<>();
-        queue.add(source);
+    private void dfs(Graph graph, int source) {
         marked[source] = true;
 
-        while (!queue.isEmpty()) {
-            int baseVertex = queue.remove();
-            for (int vertex : graph.getAdjacentVertices(baseVertex)) {
-                if (!marked[vertex]) {
-                    queue.add(vertex);
-                    marked[vertex] = true;
-                    edgeTo[vertex] = baseVertex;
-                }
+        for (int vertex : graph.getAdjacentVertices(source)) {
+            if (!marked[vertex]) {
+                dfs(graph, vertex);
+                edgeTo[vertex] = source;
             }
         }
     }

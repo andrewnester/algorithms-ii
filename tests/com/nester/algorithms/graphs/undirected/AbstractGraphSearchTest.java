@@ -1,7 +1,7 @@
-package com.nester.algorithms.undirectional;
+package com.nester.algorithms.graphs.undirected;
 
+import com.nester.algorithms.graphs.undirected.helper.GraphHelper;
 import com.nester.algorithms.structures.Graph;
-import com.nester.algorithms.undirectional.helper.GraphHelper;
 import org.junit.Assert;
 import org.junit.Test;
 

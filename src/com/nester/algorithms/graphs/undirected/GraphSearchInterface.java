@@ -1,4 +1,4 @@
-package com.nester.algorithms.undirectional;
+package com.nester.algorithms.graphs.undirected;
 
 /**
  * Interface GraphSearchInterface
