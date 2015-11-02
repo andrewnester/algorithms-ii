@@ -16,3 +16,4 @@ Algorithms (part 2) written on Java
 * Graphs
   * Deep-first search
   * Breadth-first search
+  * Connected components (based on Deep-first search)
