@@ -11,7 +11,7 @@ import java.util.ArrayList;
  * <p/>
  * Implement Adjacency-lists graph representation
  */
-public class Graph {
+public class Graph implements GraphInterface {
 
     private int vertexCount;
 
@@ -52,6 +52,7 @@ public class Graph {
      * @param firstVertex  First vertex of the edge
      * @param secondVertex Second vertex of the edge
      */
+    @Override
     public void addEdge(int firstVertex, int secondVertex) throws IndexOutOfBoundsException {
         adjacentVertices.get(firstVertex).add(secondVertex);
         adjacentVertices.get(secondVertex).add(firstVertex);
@@ -64,6 +65,7 @@ public class Graph {
      * @param vertex Vertex what adjacent must be returned for
      * @return Iterator to iterate over adjacent vertex
      */
+    @Override
     public Iterable<Integer> getAdjacentVertices(int vertex) {
         return adjacentVertices.get(vertex);
     }
@@ -71,7 +73,17 @@ public class Graph {
     /**
      * @return Return vertex count
      */
+    @Override
     public int getVertexCount() {
         return vertexCount;
+    }
+
+    /**
+     * Returns Adjacency-lists
+     *
+     * @return Adjacency-lists
+     */
+    protected ArrayList<Bag<Integer>> getAdjacentVerticesList() {
+        return adjacentVertices;
     }
 }
