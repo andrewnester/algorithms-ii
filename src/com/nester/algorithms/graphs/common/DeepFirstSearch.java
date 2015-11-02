@@ -1,6 +1,7 @@
-package com.nester.algorithms.graphs.undirected;
+package com.nester.algorithms.graphs.common;
 
-import com.nester.structures.Graph;
+import com.nester.algorithms.graphs.undirected.GraphSearchInterface;
+import com.nester.structures.GraphInterface;
 
 import java.util.Stack;
 
@@ -16,7 +17,7 @@ public class DeepFirstSearch implements GraphSearchInterface {
 
     private int[] edgeTo;
 
-    public DeepFirstSearch(Graph graph, int source) {
+    public DeepFirstSearch(GraphInterface graph, int source) {
         this.source = source;
         marked = new boolean[graph.getVertexCount()];
         edgeTo = new int[graph.getVertexCount()];
@@ -62,7 +63,7 @@ public class DeepFirstSearch implements GraphSearchInterface {
      * @param graph  Graph to be processed
      * @param source Vertex what path should be found for
      */
-    private void dfs(Graph graph, int source) {
+    private void dfs(GraphInterface graph, int source) {
         marked[source] = true;
 
         for (int vertex : graph.getAdjacentVertices(source)) {

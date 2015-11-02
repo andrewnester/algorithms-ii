@@ -1,4 +1,4 @@
-package com.nester.algorithms.graphs.undirected.helper;
+package com.nester.helpers;
 
 import com.nester.structures.DirectedGraph;
 import com.nester.structures.Graph;
@@ -33,14 +33,18 @@ public class GraphHelper {
         DirectedGraph graph = new DirectedGraph(8);
 
         graph.addEdge(0, 1);
-        graph.addEdge(0, 2);
-        graph.addEdge(0, 5);
+        graph.addEdge(0, 4);
         graph.addEdge(0, 6);
         graph.addEdge(3, 5);
         graph.addEdge(4, 3);
-        graph.addEdge(4, 5);
+        graph.addEdge(4, 4);
         graph.addEdge(4, 6);
 
+        graph.addEdge(2, 0);
+        graph.addEdge(2, 4);
+        graph.addEdge(2, 5);
+        graph.addEdge(2, 7);
+        graph.addEdge(7, 0);
         return graph;
     }
 
