@@ -1,0 +1,142 @@
+package com.nester.algorithms.graphs.common;
+
+import com.nester.helpers.GraphHelper;
+import com.nester.structures.GraphInterface;
+import org.junit.Assert;
+import org.junit.Test;
+
+import java.util.ArrayList;
+import java.util.List;
+
+public class BreadthFirstSearchTest {
+
+    @Test
+    public void undirectedGraphHasPathTo() {
+        GraphInterface graph = GraphHelper.createTestGraph();
+
+        GraphSearchInterface bfs = getAlgorithm(graph, 0);
+        Assert.assertTrue("Vertex 0 must have path to vertex 1", bfs.hasPathTo(1));
+        Assert.assertTrue("Vertex 0 must have path to vertex 2", bfs.hasPathTo(2));
+        Assert.assertTrue("Vertex 0 must have path to vertex 3", bfs.hasPathTo(3));
+        Assert.assertTrue("Vertex 0 must have path to vertex 4", bfs.hasPathTo(4));
+        Assert.assertTrue("Vertex 0 must have path to vertex 5", bfs.hasPathTo(5));
+        Assert.assertTrue("Vertex 0 must have path to vertex 5", bfs.hasPathTo(6));
+
+        Assert.assertFalse("Vertex 0 must not have path to vertex 7", bfs.hasPathTo(7));
+
+    }
+
+    @Test
+    public void directedGraphHasPathTo() {
+        GraphInterface graph = GraphHelper.createTestDirectedGraph();
+
+        GraphSearchInterface bfs = getAlgorithm(graph, 0);
+        Assert.assertTrue("Vertex 0 must have path to vertex 1", bfs.hasPathTo(1));
+        Assert.assertTrue("Vertex 0 must have path to vertex 3", bfs.hasPathTo(3));
+        Assert.assertTrue("Vertex 0 must have path to vertex 5", bfs.hasPathTo(5));
+        Assert.assertTrue("Vertex 0 must have path to vertex 4", bfs.hasPathTo(4));
+        Assert.assertTrue("Vertex 0 must have path to vertex 6", bfs.hasPathTo(6));
+
+        Assert.assertFalse("Vertex 0 must not have path to vertex 2", bfs.hasPathTo(2));
+        Assert.assertFalse("Vertex 0 must not have path to vertex 7", bfs.hasPathTo(7));
+
+    }
+
+    @Test
+    public void undirectedGraphPathToNonConnectedVertex() {
+        GraphInterface graph = GraphHelper.createTestGraph();
+
+        GraphSearchInterface bfs = getAlgorithm(graph, 0);
+        Assert.assertNull("Vertex 0 must not have path to vertex 7", bfs.pathTo(7));
+    }
+
+    @Test
+    public void directedGraphPathToNonConnectedVertex() {
+        GraphInterface graph = GraphHelper.createTestDirectedGraph();
+
+        GraphSearchInterface bfs = getAlgorithm(graph, 0);
+        Assert.assertNull("Vertex 0 must not have path to vertex 2", bfs.pathTo(2));
+        Assert.assertNull("Vertex 0 must not have path to vertex 7", bfs.pathTo(7));
+    }
+
+
+    @Test
+    public void undirectedGraphPathTo() {
+        GraphInterface graph = GraphHelper.createTestGraph();
+
+        GraphSearchInterface bfs = getAlgorithm(graph, 0);
+        Iterable<Integer> path = bfs.pathTo(5);
+
+        List<Integer> vertexes = new ArrayList<>();
+        for (Integer vertex : path) {
+            vertexes.add(vertex);
+        }
+
+        Assert.assertEquals("Wrong path to vertex 5 from 0", 2, vertexes.size());
+        Assert.assertTrue("Wrong path to vertex 5 from 0", vertexes.contains(5));
+        Assert.assertTrue("Wrong path to vertex 5 from 0", vertexes.contains(0));
+    }
+
+    @Test
+    public void directedGraphPathTo() {
+        GraphInterface graph = GraphHelper.createTestDirectedGraph();
+
+        GraphSearchInterface bfs = getAlgorithm(graph, 0);
+        Iterable<Integer> path = bfs.pathTo(5);
+
+        List<Integer> vertexes = new ArrayList<>();
+        for (Integer vertex : path) {
+            vertexes.add(vertex);
+        }
+
+        Assert.assertEquals("Wrong path to vertex 5 from 0", 4, vertexes.size());
+        Assert.assertTrue("Wrong path to vertex 5 from 0", vertexes.contains(5));
+        Assert.assertTrue("Wrong path to vertex 5 from 0", vertexes.contains(4));
+        Assert.assertTrue("Wrong path to vertex 5 from 0", vertexes.contains(3));
+        Assert.assertTrue("Wrong path to vertex 5 from 0", vertexes.contains(0));
+
+        bfs = getAlgorithm(graph, 0);
+        path = bfs.pathTo(6);
+
+        vertexes = new ArrayList<>();
+        for (Integer vertex : path) {
+            vertexes.add(vertex);
+        }
+
+        Assert.assertEquals("Wrong path to vertex 6 from 0", 2, vertexes.size());
+        Assert.assertTrue("Wrong path to vertex 6 from 0", vertexes.contains(6));
+        Assert.assertTrue("Wrong path to vertex 6 from 0", vertexes.contains(0));
+    }
+
+    @Test
+    public void undirectedGraphDistance() {
+        GraphInterface graph = GraphHelper.createTestGraph();
+        BreadthFirstSearch bfs = new BreadthFirstSearch(graph, 0);
+
+        Assert.assertEquals("Wrong distance to vertex 1", 1, bfs.distance(1));
+        Assert.assertEquals("Wrong distance to vertex 2", 1, bfs.distance(2));
+        Assert.assertEquals("Wrong distance to vertex 5", 1, bfs.distance(5));
+        Assert.assertEquals("Wrong distance to vertex 6", 1, bfs.distance(6));
+
+        Assert.assertEquals("Wrong distance to vertex 3", 2, bfs.distance(3));
+        Assert.assertEquals("Wrong distance to vertex 4", 2, bfs.distance(4));
+    }
+
+    @Test
+    public void directedGraphDistance() {
+        GraphInterface graph = GraphHelper.createTestDirectedGraph();
+        BreadthFirstSearch bfs = new BreadthFirstSearch(graph, 0);
+
+        Assert.assertEquals("Wrong distance to vertex 1", 1, bfs.distance(1));
+        Assert.assertEquals("Wrong distance to vertex 4", 1, bfs.distance(4));
+        Assert.assertEquals("Wrong distance to vertex 6", 1, bfs.distance(6));
+
+        Assert.assertEquals("Wrong distance to vertex 3", 2, bfs.distance(3));
+
+        Assert.assertEquals("Wrong distance to vertex 5", 3, bfs.distance(5));
+    }
+
+    protected GraphSearchInterface getAlgorithm(GraphInterface graph, int source) {
+        return new BreadthFirstSearch(graph, source);
+    }
+}

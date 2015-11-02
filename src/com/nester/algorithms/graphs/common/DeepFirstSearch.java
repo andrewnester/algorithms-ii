@@ -1,6 +1,5 @@
 package com.nester.algorithms.graphs.common;
 
-import com.nester.algorithms.graphs.undirected.GraphSearchInterface;
 import com.nester.structures.GraphInterface;
 
 import java.util.Stack;

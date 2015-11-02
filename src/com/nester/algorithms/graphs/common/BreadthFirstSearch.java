@@ -1,6 +1,6 @@
-package com.nester.algorithms.graphs.undirected;
+package com.nester.algorithms.graphs.common;
 
-import com.nester.structures.Graph;
+import com.nester.structures.GraphInterface;
 
 import java.util.LinkedList;
 import java.util.Queue;
@@ -18,10 +18,13 @@ public class BreadthFirstSearch implements GraphSearchInterface {
 
     private int[] edgeTo;
 
-    public BreadthFirstSearch(Graph graph, int source) {
+    private int[] distances;
+
+    public BreadthFirstSearch(GraphInterface graph, int source) {
         this.source = source;
         marked = new boolean[graph.getVertexCount()];
         edgeTo = new int[graph.getVertexCount()];
+        distances = new int[graph.getVertexCount()];
 
         bfs(graph, source);
     }
@@ -59,23 +62,36 @@ public class BreadthFirstSearch implements GraphSearchInterface {
     }
 
     /**
+     * Returns distance from source vertex to passed one
+     *
+     * @param vertex Destination vertex
+     * @return Distance from source vertex to destination one
+     */
+    public int distance(int vertex) {
+        return distances[vertex];
+    }
+
+    /**
      * Runs breadth-first search
      *
      * @param graph  Graph to be processed
      * @param source Vertex what path should be found for
      */
-    private void bfs(Graph graph, int source) {
+    private void bfs(GraphInterface graph, int source) {
         Queue<Integer> queue = new LinkedList<>();
         queue.add(source);
         marked[source] = true;
+        distances[source] = 0;
 
         while (!queue.isEmpty()) {
             int baseVertex = queue.remove();
+
             for (int vertex : graph.getAdjacentVertices(baseVertex)) {
                 if (!marked[vertex]) {
                     queue.add(vertex);
                     marked[vertex] = true;
                     edgeTo[vertex] = baseVertex;
+                    distances[vertex] = distances[baseVertex] + 1;
                 }
             }
         }
