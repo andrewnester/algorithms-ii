@@ -1,5 +1,10 @@
 apply plugin: 'java'
 
+apply plugin: 'cobertura'
+apply plugin: 'com.github.kt3k.coveralls'
+apply plugin: 'jacoco'
+
+
 buildscript {
     repositories {
         mavenCentral()
@@ -11,13 +16,6 @@ buildscript {
     }
 
 }
-apply plugin: 'cobertura'
-apply plugin: 'com.github.kt3k.coveralls'
-apply plugin: 'jacoco'
-
-repositories {
-    mavenCentral()
-}
 
 jacocoTestReport {
     reports {
@@ -25,6 +23,11 @@ jacocoTestReport {
         html.enabled = true
     }
 }
+
+repositories {
+    mavenCentral()
+}
+
 
 dependencies {
     testCompile group: 'junit', name: 'junit', version: '4.+'
@@ -48,6 +51,3 @@ sourceSets {
         }
     }
 }
-
-
-test.finalizedBy(project.tasks.cobertura)
