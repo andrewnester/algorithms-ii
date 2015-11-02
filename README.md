@@ -10,6 +10,7 @@ Algorithms (part 2) written on Java
 ### Structures
 * Bag
 * Graph
+* Directed Graph
 
 ### Algorithms
 
