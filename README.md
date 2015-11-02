@@ -4,3 +4,15 @@
 
 # algorithms-ii
 Algorithms (part 2) written on Java
+
+
+
+### Structures
+* Bag
+* Graph
+
+### Algorithms
+
+* Graphs
+  * Deep-first search
+  * Breadth-first search
