@@ -1,4 +1,4 @@
-package com.nester.algorithms.structures;
+package com.nester.structures;
 
 import java.io.IOException;
 import java.io.InputStream;

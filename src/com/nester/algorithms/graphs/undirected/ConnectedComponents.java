@@ -1,6 +1,6 @@
 package com.nester.algorithms.graphs.undirected;
 
-import com.nester.algorithms.structures.Graph;
+import com.nester.structures.Graph;
 
 /**
  * Class ConnectedComponents

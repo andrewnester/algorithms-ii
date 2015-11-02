@@ -1,4 +1,4 @@
-package com.nester.algorithms.structures;
+package com.nester.structures;
 
 import java.util.Iterator;
 import java.util.NoSuchElementException;

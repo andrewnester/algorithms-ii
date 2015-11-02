@@ -1,4 +1,4 @@
-package com.nester.algorithms.structures;
+package com.nester.structures;
 
 /**
  * Interface GraphInterface

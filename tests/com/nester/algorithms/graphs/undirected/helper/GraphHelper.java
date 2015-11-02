@@ -1,7 +1,7 @@
 package com.nester.algorithms.graphs.undirected.helper;
 
-import com.nester.algorithms.structures.DirectedGraph;
-import com.nester.algorithms.structures.Graph;
+import com.nester.structures.DirectedGraph;
+import com.nester.structures.Graph;
 
 /**
  * Class GraphHelper
