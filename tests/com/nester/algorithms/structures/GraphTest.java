@@ -61,7 +61,7 @@ public class GraphTest {
     }
 
     private void testGraph(Graph graph) {
-        Iterable<Integer> vertexes = graph.getAdjacentVertexes(0);
+        Iterable<Integer> vertexes = graph.getAdjacentVertices(0);
         List<Integer> adjacentVertexes = new ArrayList<>();
         for (Integer vertex : vertexes) {
             adjacentVertexes.add(vertex);
@@ -71,7 +71,7 @@ public class GraphTest {
         Assert.assertTrue("Not all vertexes returned as adjacent ones", adjacentVertexes.contains(1));
         Assert.assertTrue("Not all vertexes returned as adjacent ones", adjacentVertexes.contains(3));
 
-        vertexes = graph.getAdjacentVertexes(1);
+        vertexes = graph.getAdjacentVertices(1);
         adjacentVertexes = new ArrayList<>();
         for (Integer vertex : vertexes) {
             adjacentVertexes.add(vertex);
@@ -82,7 +82,7 @@ public class GraphTest {
         Assert.assertTrue("Not all vertexes returned as adjacent ones", adjacentVertexes.contains(3));
         Assert.assertTrue("Not all vertexes returned as adjacent ones", adjacentVertexes.contains(4));
 
-        vertexes = graph.getAdjacentVertexes(2);
+        vertexes = graph.getAdjacentVertices(2);
         adjacentVertexes = new ArrayList<>();
         for (Integer vertex : vertexes) {
             adjacentVertexes.add(vertex);
@@ -90,7 +90,7 @@ public class GraphTest {
 
         Assert.assertEquals("Not empty vertexes for vertex 2", 0, adjacentVertexes.size());
 
-        vertexes = graph.getAdjacentVertexes(3);
+        vertexes = graph.getAdjacentVertices(3);
         adjacentVertexes = new ArrayList<>();
         for (Integer vertex : vertexes) {
             adjacentVertexes.add(vertex);

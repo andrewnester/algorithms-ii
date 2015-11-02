@@ -1,6 +1,7 @@
 package com.nester.algorithms.undirectional;
 
 import com.nester.algorithms.structures.Graph;
+import com.nester.algorithms.undirectional.helper.GraphHelper;
 import org.junit.Assert;
 import org.junit.Test;
 
@@ -11,7 +12,7 @@ public abstract class AbstractGraphSearchTest {
 
     @Test
     public void hasPathTo() {
-        Graph graph = createTestGraph();
+        Graph graph = GraphHelper.createTestGraph();
 
         GraphSearchInterface dfs = getAlgorithm(graph, 0);
         Assert.assertTrue("Vertex 0 must have path to vertex 1", dfs.hasPathTo(1));
@@ -27,24 +28,9 @@ public abstract class AbstractGraphSearchTest {
 
     @Test
     public void pathToNonConnectedVertex() {
-        Graph graph = createTestGraph();
+        Graph graph = GraphHelper.createTestGraph();
 
         GraphSearchInterface dfs = getAlgorithm(graph, 0);
         Assert.assertNull("Vertex 0 must not have path to vertex 7", dfs.pathTo(7));
-    }
-
-    protected Graph createTestGraph() {
-        Graph graph = new Graph(8);
-
-        graph.addEdge(0, 1);
-        graph.addEdge(0, 2);
-        graph.addEdge(0, 5);
-        graph.addEdge(0, 6);
-        graph.addEdge(3, 5);
-        graph.addEdge(4, 3);
-        graph.addEdge(4, 5);
-        graph.addEdge(4, 6);
-
-        return graph;
     }
 }

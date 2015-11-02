@@ -1,6 +1,7 @@
 package com.nester.algorithms.undirectional;
 
 import com.nester.algorithms.structures.Graph;
+import com.nester.algorithms.undirectional.helper.GraphHelper;
 import org.junit.Assert;
 import org.junit.Test;
 
@@ -16,7 +17,7 @@ public class DeepFirstSearchTest extends AbstractGraphSearchTest {
 
     @Test
     public void pathTo() {
-        Graph graph = createTestGraph();
+        Graph graph = GraphHelper.createTestGraph();
 
         GraphSearchInterface dfs = getAlgorithm(graph, 0);
         Iterable<Integer> path = dfs.pathTo(5);

@@ -38,10 +38,10 @@ public class BreadthFirstSearch implements GraphSearchInterface {
     }
 
     /**
-     * Returns all vertexes lying on the path
+     * Returns all vertices lying on the path
      *
      * @param vertex Destination point of path
-     * @return iteratable structure to iterate over vertexes that is lying on the path from source to vertex
+     * @return iteratable structure to iterate over vertices that is lying on the path from source to vertex
      */
     @Override
     public Iterable<Integer> pathTo(int vertex) {
@@ -71,7 +71,7 @@ public class BreadthFirstSearch implements GraphSearchInterface {
 
         while (!queue.isEmpty()) {
             int baseVertex = queue.remove();
-            for (int vertex : graph.getAdjacentVertexes(baseVertex)) {
+            for (int vertex : graph.getAdjacentVertices(baseVertex)) {
                 if (!marked[vertex]) {
                     queue.add(vertex);
                     marked[vertex] = true;

@@ -15,20 +15,20 @@ public class Graph {
 
     private int vertexCount;
 
-    private ArrayList<Bag<Integer>> adjacentVertexes;
+    private ArrayList<Bag<Integer>> adjacentVertices;
 
     public Graph(int vertexCount) {
         this.vertexCount = vertexCount;
-        adjacentVertexes = new ArrayList<>();
+        adjacentVertices = new ArrayList<>();
         for (int i = 0; i < vertexCount; i++) {
-            adjacentVertexes.add(new Bag<Integer>());
+            adjacentVertices.add(new Bag<Integer>());
         }
     }
 
     public Graph(InputStream inputStream) throws IOException {
 
         vertexCount = 0;
-        adjacentVertexes = new ArrayList<>();
+        adjacentVertices = new ArrayList<>();
         BufferedReader in = new BufferedReader(new InputStreamReader(inputStream));
         String line;
         while ((line = in.readLine()) != null) {
@@ -36,7 +36,7 @@ public class Graph {
             if (splittedLine.length == 1) {
                 vertexCount = Integer.parseInt(splittedLine[0]);
                 for (int i = 0; i < vertexCount; i++) {
-                    adjacentVertexes.add(new Bag<Integer>());
+                    adjacentVertices.add(new Bag<Integer>());
                 }
             } else {
                 addEdge(Integer.parseInt(splittedLine[0]), Integer.parseInt(splittedLine[1]));
@@ -47,25 +47,25 @@ public class Graph {
     }
 
     /**
-     * Add new edge between 2 vertexes
+     * Add new edge between 2 vertices
      *
      * @param firstVertex  First vertex of the edge
      * @param secondVertex Second vertex of the edge
      */
     public void addEdge(int firstVertex, int secondVertex) throws IndexOutOfBoundsException {
-        adjacentVertexes.get(firstVertex).add(secondVertex);
-        adjacentVertexes.get(secondVertex).add(firstVertex);
+        adjacentVertices.get(firstVertex).add(secondVertex);
+        adjacentVertices.get(secondVertex).add(firstVertex);
 
     }
 
     /**
-     * Returns adjacent vertexes for vertex passed
+     * Returns adjacent vertices for vertex passed
      *
      * @param vertex Vertex what adjacent must be returned for
      * @return Iterator to iterate over adjacent vertex
      */
-    public Iterable<Integer> getAdjacentVertexes(int vertex) {
-        return adjacentVertexes.get(vertex);
+    public Iterable<Integer> getAdjacentVertices(int vertex) {
+        return adjacentVertices.get(vertex);
     }
 
     /**
