@@ -41,3 +41,6 @@ sourceSets {
         }
     }
 }
+
+
+test.finalizedBy(project.tasks.cobertura)
