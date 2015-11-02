@@ -21,7 +21,7 @@ public class Graph {
         this.vertexCount = vertexCount;
         adjacentVertexes = new ArrayList<>();
         for (int i = 0; i < vertexCount; i++) {
-            adjacentVertexes.add(new Bag<>());
+            adjacentVertexes.add(new Bag<Integer>());
         }
     }
 
@@ -37,7 +37,7 @@ public class Graph {
                 if (splittedLine.length == 1) {
                     vertexCount = Integer.parseInt(splittedLine[0]);
                     for (int i = 0; i < vertexCount; i++) {
-                        adjacentVertexes.add(new Bag<>());
+                        adjacentVertexes.add(new Bag<Integer>());
                     }
                 } else {
                     addEdge(Integer.parseInt(splittedLine[0]), Integer.parseInt(splittedLine[1]));
