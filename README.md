@@ -2,8 +2,8 @@
 
 [![Coverage Status](https://coveralls.io/repos/andrewnester/algorithms-ii/badge.png?branch=master&service=github)](https://coveralls.io/github/andrewnester/algorithms-ii?branch=master)
 
-# algorithms-ii
-Algorithms (part 2) written on Java
+# Algorithms
+Algorithms written on Java
 
 
 
