@@ -41,13 +41,4 @@ public class DeepFirstOrderTest {
         Assert.assertEquals("Wrong reverse post order", "[2, 7, 0, 4, 6, 3, 5, 1]", vertices.toString());
     }
 
-    @Test(expected = UnsupportedOperationException.class)
-    public void removeFromReversePostOrder() {
-        DirectedGraph graph = GraphHelper.createTestDirectedGraph();
-        DeepFirstOrder dfo = new DeepFirstOrder(graph);
-        Iterable<Integer> it = dfo.getReversePostOrder();
-        it.iterator().remove();
-
-    }
-
 }

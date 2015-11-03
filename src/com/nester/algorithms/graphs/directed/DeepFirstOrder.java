@@ -1,5 +1,6 @@
 package com.nester.algorithms.graphs.directed;
 
+import com.nester.base.ReverseList;
 import com.nester.structures.DirectedGraph;
 
 import java.util.*;
@@ -52,7 +53,7 @@ public class DeepFirstOrder {
      * @return Graph reverse post-order path
      */
     public Iterable<Integer> getReversePostOrder() {
-        return new ReverseList(postOrder);
+        return new ReverseList<>(postOrder);
     }
 
     /**
@@ -74,36 +75,5 @@ public class DeepFirstOrder {
         postOrder.add(baseVertex);
     }
 
-    /**
-     * Class ReverseList
-     * Iterable class to return reversed list of vertices
-     */
-    private class ReverseList implements Iterable<Integer> {
 
-        private ListIterator<Integer> iterator;
-
-        public ReverseList(List<Integer> list) {
-            iterator = list.listIterator(list.size());
-        }
-
-        @Override
-        public Iterator<Integer> iterator() {
-            return new Iterator<Integer>() {
-                @Override
-                public boolean hasNext() {
-                    return iterator.hasPrevious();
-                }
-
-                @Override
-                public Integer next() {
-                    return iterator.previous();
-                }
-
-                @Override
-                public void remove() {
-                    throw new UnsupportedOperationException();
-                }
-            };
-        }
-    }
 }
