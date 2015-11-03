@@ -12,21 +12,35 @@ import java.util.Stack;
  */
 public class BreadthFirstSearch implements GraphSearchInterface {
 
-    private int source;
-
     private boolean[] marked;
 
     private int[] edgeTo;
 
     private int[] distances;
 
+    private Queue<Integer> sources;
+
     public BreadthFirstSearch(GraphInterface graph, int source) {
-        this.source = source;
+
         marked = new boolean[graph.getVertexCount()];
         edgeTo = new int[graph.getVertexCount()];
         distances = new int[graph.getVertexCount()];
 
-        bfs(graph, source);
+        Queue<Integer> queue = new LinkedList<>();
+        queue.add(source);
+        sources = new LinkedList<>(queue);
+
+        bfs(graph, queue);
+    }
+
+    public BreadthFirstSearch(GraphInterface graph, Queue<Integer> queue) {
+
+        marked = new boolean[graph.getVertexCount()];
+        edgeTo = new int[graph.getVertexCount()];
+        distances = new int[graph.getVertexCount()];
+        sources = new LinkedList<>(queue);
+
+        bfs(graph, queue);
     }
 
     /**
@@ -53,11 +67,12 @@ public class BreadthFirstSearch implements GraphSearchInterface {
         }
 
         Stack<Integer> path = new Stack<>();
-        for (int v = vertex; v != source; v = edgeTo[v]) {
+        int v;
+        for (v = vertex; !sources.contains(v); v = edgeTo[v]) {
             path.push(v);
         }
 
-        path.push(source);
+        path.push(v);
         return path;
     }
 
@@ -74,14 +89,10 @@ public class BreadthFirstSearch implements GraphSearchInterface {
     /**
      * Runs breadth-first search
      *
-     * @param graph  Graph to be processed
-     * @param source Vertex what path should be found for
+     * @param graph Graph to be processed
+     * @param queue Pre-initialized queue to be processed
      */
-    private void bfs(GraphInterface graph, int source) {
-        Queue<Integer> queue = new LinkedList<>();
-        queue.add(source);
-        marked[source] = true;
-        distances[source] = 0;
+    private void bfs(GraphInterface graph, Queue<Integer> queue) {
 
         while (!queue.isEmpty()) {
             int baseVertex = queue.remove();
@@ -94,6 +105,8 @@ public class BreadthFirstSearch implements GraphSearchInterface {
                     distances[vertex] = distances[baseVertex] + 1;
                 }
             }
+
+            marked[baseVertex] = true;
         }
     }
 

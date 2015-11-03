@@ -6,7 +6,9 @@ import org.junit.Assert;
 import org.junit.Test;
 
 import java.util.ArrayList;
+import java.util.LinkedList;
 import java.util.List;
+import java.util.Queue;
 
 public class BreadthFirstSearchTest {
 
@@ -67,14 +69,14 @@ public class BreadthFirstSearchTest {
         GraphSearchInterface bfs = getAlgorithm(graph, 0);
         Iterable<Integer> path = bfs.pathTo(5);
 
-        List<Integer> vertexes = new ArrayList<>();
+        List<Integer> vertices = new ArrayList<>();
         for (Integer vertex : path) {
-            vertexes.add(vertex);
+            vertices.add(vertex);
         }
 
-        Assert.assertEquals("Wrong path to vertex 5 from 0", 2, vertexes.size());
-        Assert.assertTrue("Wrong path to vertex 5 from 0", vertexes.contains(5));
-        Assert.assertTrue("Wrong path to vertex 5 from 0", vertexes.contains(0));
+        Assert.assertEquals("Wrong path to vertex 5 from 0", 2, vertices.size());
+        Assert.assertTrue("Wrong path to vertex 5 from 0", vertices.contains(5));
+        Assert.assertTrue("Wrong path to vertex 5 from 0", vertices.contains(0));
     }
 
     @Test
@@ -84,28 +86,28 @@ public class BreadthFirstSearchTest {
         GraphSearchInterface bfs = getAlgorithm(graph, 0);
         Iterable<Integer> path = bfs.pathTo(5);
 
-        List<Integer> vertexes = new ArrayList<>();
+        List<Integer> vertices = new ArrayList<>();
         for (Integer vertex : path) {
-            vertexes.add(vertex);
+            vertices.add(vertex);
         }
 
-        Assert.assertEquals("Wrong path to vertex 5 from 0", 4, vertexes.size());
-        Assert.assertTrue("Wrong path to vertex 5 from 0", vertexes.contains(5));
-        Assert.assertTrue("Wrong path to vertex 5 from 0", vertexes.contains(4));
-        Assert.assertTrue("Wrong path to vertex 5 from 0", vertexes.contains(3));
-        Assert.assertTrue("Wrong path to vertex 5 from 0", vertexes.contains(0));
+        Assert.assertEquals("Wrong path to vertex 5 from 0", 4, vertices.size());
+        Assert.assertTrue("Wrong path to vertex 5 from 0", vertices.contains(5));
+        Assert.assertTrue("Wrong path to vertex 5 from 0", vertices.contains(4));
+        Assert.assertTrue("Wrong path to vertex 5 from 0", vertices.contains(3));
+        Assert.assertTrue("Wrong path to vertex 5 from 0", vertices.contains(0));
 
         bfs = getAlgorithm(graph, 0);
         path = bfs.pathTo(6);
 
-        vertexes = new ArrayList<>();
+        vertices = new ArrayList<>();
         for (Integer vertex : path) {
-            vertexes.add(vertex);
+            vertices.add(vertex);
         }
 
-        Assert.assertEquals("Wrong path to vertex 6 from 0", 2, vertexes.size());
-        Assert.assertTrue("Wrong path to vertex 6 from 0", vertexes.contains(6));
-        Assert.assertTrue("Wrong path to vertex 6 from 0", vertexes.contains(0));
+        Assert.assertEquals("Wrong path to vertex 6 from 0", 2, vertices.size());
+        Assert.assertTrue("Wrong path to vertex 6 from 0", vertices.contains(6));
+        Assert.assertTrue("Wrong path to vertex 6 from 0", vertices.contains(0));
     }
 
     @Test
@@ -134,6 +136,49 @@ public class BreadthFirstSearchTest {
         Assert.assertEquals("Wrong distance to vertex 3", 2, bfs.distance(3));
 
         Assert.assertEquals("Wrong distance to vertex 5", 3, bfs.distance(5));
+    }
+
+    @Test
+    public void multiSourceTest() {
+        GraphInterface graph = GraphHelper.createTestGraph();
+
+        Queue<Integer> queue = new LinkedList<>();
+        queue.add(3);
+        queue.add(0);
+        BreadthFirstSearch bfs = new BreadthFirstSearch(graph, queue);
+
+        Assert.assertTrue("This graph must have path to 6 from 0 or 3 ", bfs.hasPathTo(6));
+
+        Iterable<Integer> path = bfs.pathTo(6);
+        List<Integer> vertices = new ArrayList<>();
+        for (Integer vertex : path) {
+            vertices.add(vertex);
+        }
+
+        Assert.assertEquals("Shortest path to vertex 6 from 0", 2, vertices.size());
+        Assert.assertTrue("Wrong shortest path to vertex 6 from 0", vertices.contains(6));
+        Assert.assertTrue("Wrong shortest path to vertex 6 from 0", vertices.contains(0));
+
+
+        graph = GraphHelper.createTestDirectedGraph();
+
+        queue = new LinkedList<>();
+        queue.add(0);
+        queue.add(3);
+        bfs = new BreadthFirstSearch(graph, queue);
+
+        Assert.assertTrue("This graph must have path to 5 from 0 or 3 ", bfs.hasPathTo(5));
+
+        path = bfs.pathTo(5);
+        vertices = new ArrayList<>();
+        for (Integer vertex : path) {
+            vertices.add(vertex);
+        }
+
+        Assert.assertEquals("Shortest path to vertex 5 from 3", 2, vertices.size());
+        Assert.assertTrue("Wrong shortest path to vertex 5 from 3", vertices.contains(5));
+        Assert.assertTrue("Wrong shortest path to vertex 5 from 3", vertices.contains(3));
+
     }
 
     protected GraphSearchInterface getAlgorithm(GraphInterface graph, int source) {
