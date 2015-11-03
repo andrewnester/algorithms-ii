@@ -2,7 +2,8 @@ package com.nester.algorithms.graphs.common;
 
 import com.nester.structures.GraphInterface;
 
-import java.util.Stack;
+import java.util.ArrayDeque;
+import java.util.Deque;
 
 /**
  * Class DeepFirstSearch
@@ -47,7 +48,7 @@ public class DeepFirstSearch implements GraphSearchInterface {
             return null;
         }
 
-        Stack<Integer> path = new Stack<>();
+        Deque<Integer> path = new ArrayDeque<>();
         for (int v = vertex; v != source; v = edgeTo[v]) {
             path.push(v);
         }

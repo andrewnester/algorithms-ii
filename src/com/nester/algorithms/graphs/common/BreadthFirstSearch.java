@@ -2,9 +2,7 @@ package com.nester.algorithms.graphs.common;
 
 import com.nester.structures.GraphInterface;
 
-import java.util.LinkedList;
-import java.util.Queue;
-import java.util.Stack;
+import java.util.*;
 
 /**
  * Class BreadthFirstSearch
@@ -18,7 +16,7 @@ public class BreadthFirstSearch implements GraphSearchInterface {
 
     private int[] distances;
 
-    private Queue<Integer> sources;
+    private List<Integer> sources;
 
     public BreadthFirstSearch(GraphInterface graph, int source) {
 
@@ -26,9 +24,9 @@ public class BreadthFirstSearch implements GraphSearchInterface {
         edgeTo = new int[graph.getVertexCount()];
         distances = new int[graph.getVertexCount()];
 
-        Queue<Integer> queue = new LinkedList<>();
+        Queue<Integer> queue = new ArrayDeque<>();
         queue.add(source);
-        sources = new LinkedList<>(queue);
+        sources = new ArrayList<>(queue);
 
         bfs(graph, queue);
     }
@@ -38,7 +36,7 @@ public class BreadthFirstSearch implements GraphSearchInterface {
         marked = new boolean[graph.getVertexCount()];
         edgeTo = new int[graph.getVertexCount()];
         distances = new int[graph.getVertexCount()];
-        sources = new LinkedList<>(queue);
+        sources = new ArrayList<>(queue);
 
         bfs(graph, queue);
     }
@@ -66,7 +64,7 @@ public class BreadthFirstSearch implements GraphSearchInterface {
             return null;
         }
 
-        Stack<Integer> path = new Stack<>();
+        Deque<Integer> path = new ArrayDeque<>();
         int v;
         for (v = vertex; !sources.contains(v); v = edgeTo[v]) {
             path.push(v);

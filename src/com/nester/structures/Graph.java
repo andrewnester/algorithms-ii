@@ -5,6 +5,7 @@ import java.io.IOException;
 import java.io.InputStream;
 import java.io.InputStreamReader;
 import java.util.ArrayList;
+import java.util.List;
 
 /**
  * Class Graph
@@ -15,13 +16,13 @@ public class Graph implements GraphInterface {
 
     private int vertexCount;
 
-    private ArrayList<Bag<Integer>> adjacentVertices;
+    private ArrayList<List<Integer>> adjacentVertices;
 
     public Graph(int vertexCount) {
         this.vertexCount = vertexCount;
         adjacentVertices = new ArrayList<>();
         for (int i = 0; i < vertexCount; i++) {
-            adjacentVertices.add(new Bag<Integer>());
+            adjacentVertices.add(new ArrayList<Integer>());
         }
     }
 
@@ -36,7 +37,7 @@ public class Graph implements GraphInterface {
             if (splittedLine.length == 1) {
                 vertexCount = Integer.parseInt(splittedLine[0]);
                 for (int i = 0; i < vertexCount; i++) {
-                    adjacentVertices.add(new Bag<Integer>());
+                    adjacentVertices.add(new ArrayList<Integer>());
                 }
             } else {
                 addEdge(Integer.parseInt(splittedLine[0]), Integer.parseInt(splittedLine[1]));
@@ -83,7 +84,7 @@ public class Graph implements GraphInterface {
      *
      * @return Adjacency-lists
      */
-    protected ArrayList<Bag<Integer>> getAdjacentVerticesList() {
+    protected ArrayList<List<Integer>> getAdjacentVerticesList() {
         return adjacentVertices;
     }
 }

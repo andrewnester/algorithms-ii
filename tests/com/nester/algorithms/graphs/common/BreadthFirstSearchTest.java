@@ -5,10 +5,7 @@ import com.nester.structures.GraphInterface;
 import org.junit.Assert;
 import org.junit.Test;
 
-import java.util.ArrayList;
-import java.util.LinkedList;
-import java.util.List;
-import java.util.Queue;
+import java.util.*;
 
 public class BreadthFirstSearchTest {
 
@@ -142,7 +139,7 @@ public class BreadthFirstSearchTest {
     public void multiSourceTest() {
         GraphInterface graph = GraphHelper.createTestGraph();
 
-        Queue<Integer> queue = new LinkedList<>();
+        Queue<Integer> queue = new ArrayDeque<>();
         queue.add(3);
         queue.add(0);
         BreadthFirstSearch bfs = new BreadthFirstSearch(graph, queue);
@@ -162,7 +159,7 @@ public class BreadthFirstSearchTest {
 
         graph = GraphHelper.createTestDirectedGraph();
 
-        queue = new LinkedList<>();
+        queue = new ArrayDeque<>();
         queue.add(0);
         queue.add(3);
         bfs = new BreadthFirstSearch(graph, queue);

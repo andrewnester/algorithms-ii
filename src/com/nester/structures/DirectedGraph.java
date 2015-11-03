@@ -3,6 +3,7 @@ package com.nester.structures;
 import java.io.IOException;
 import java.io.InputStream;
 import java.util.ArrayList;
+import java.util.List;
 
 /**
  * Class DirectedGraph
@@ -26,7 +27,7 @@ public class DirectedGraph extends Graph implements GraphInterface {
      */
     @Override
     public void addEdge(int firstVertex, int secondVertex) throws IndexOutOfBoundsException {
-        ArrayList<Bag<Integer>> adjacentVertices = getAdjacentVerticesList();
+        ArrayList<List<Integer>> adjacentVertices = getAdjacentVerticesList();
 
         // checking if in-vertex is not out of bounds
         if(secondVertex >= getVertexCount()) {

@@ -18,12 +18,12 @@ public class GraphHelper {
         Graph graph = new Graph(8);
 
         graph.addEdge(0, 1);
+        graph.addEdge(0, 6);
         graph.addEdge(0, 2);
         graph.addEdge(0, 5);
-        graph.addEdge(0, 6);
         graph.addEdge(3, 5);
-        graph.addEdge(4, 3);
         graph.addEdge(4, 5);
+        graph.addEdge(4, 3);
         graph.addEdge(4, 6);
 
         return graph;

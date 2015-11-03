@@ -12,17 +12,14 @@ public class DeepFirstOrder {
 
     private boolean[] marked;
 
-    private Queue<Integer> preOrder;
+    private List<Integer> preOrder;
 
     private List<Integer> postOrder;
 
-    private Stack<Integer> reversePostOrder;
-
     public DeepFirstOrder(DirectedGraph graph) {
         marked = new boolean[graph.getVertexCount()];
-        preOrder = new LinkedList<>();
-        postOrder = new LinkedList<>();
-        reversePostOrder = new Stack<>();
+        preOrder = new ArrayList<>();
+        postOrder = new ArrayList<>();
 
         for (int vertex = 0; vertex < graph.getVertexCount(); vertex++) {
             if (!marked[vertex]) {
@@ -104,7 +101,7 @@ public class DeepFirstOrder {
 
                 @Override
                 public void remove() {
-                    iterator.remove();
+                    throw new UnsupportedOperationException();
                 }
             };
         }

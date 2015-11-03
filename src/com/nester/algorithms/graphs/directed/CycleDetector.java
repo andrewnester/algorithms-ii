@@ -2,7 +2,8 @@ package com.nester.algorithms.graphs.directed;
 
 import com.nester.structures.DirectedGraph;
 
-import java.util.Stack;
+import java.util.ArrayList;
+import java.util.List;
 
 /**
  * Class CycleDetector
@@ -14,7 +15,7 @@ public class CycleDetector {
 
     private int[] edgeTo;
 
-    private Stack<Integer> cycle;
+    private List<Integer> cycle;
 
     private boolean[] onStack;
 
@@ -65,11 +66,11 @@ public class CycleDetector {
             }
 
             if (onStack[vertex]) {
-                cycle = new Stack<>();
+                cycle = new ArrayList<>();
                 for (int v = baseVertex; v != vertex; v = edgeTo[v]) {
-                    cycle.push(v);
+                    cycle.add(v);
                 }
-                cycle.push(vertex);
+                cycle.add(vertex);
                 return;
             }
 
