@@ -1,6 +1,7 @@
 package com.nester.structures;
 
 import org.junit.Assert;
+import org.junit.Test;
 
 import java.io.IOException;
 import java.io.InputStream;
@@ -8,6 +9,41 @@ import java.util.ArrayList;
 import java.util.List;
 
 public class DirectedGraphTest extends GraphTest {
+
+    @Test
+    public void reverse() {
+        DirectedGraph graph = new DirectedGraph(3);
+
+        graph.addEdge(0, 1);
+        graph.addEdge(1, 2);
+        graph.addEdge(2, 0);
+
+        DirectedGraph reversedGraph = graph.reverse();
+
+        Iterable<Integer> vertices = reversedGraph.getAdjacentVertices(0);
+        List<Integer> adjacentVertices = new ArrayList<>();
+        for (Integer vertex : vertices) {
+            adjacentVertices.add(vertex);
+        }
+
+        Assert.assertEquals("[2]", adjacentVertices.toString());
+
+        vertices = reversedGraph.getAdjacentVertices(1);
+        adjacentVertices = new ArrayList<>();
+        for (Integer vertex : vertices) {
+            adjacentVertices.add(vertex);
+        }
+
+        Assert.assertEquals("[0]", adjacentVertices.toString());
+
+        vertices = reversedGraph.getAdjacentVertices(2);
+        adjacentVertices = new ArrayList<>();
+        for (Integer vertex : vertices) {
+            adjacentVertices.add(vertex);
+        }
+
+        Assert.assertEquals("[1]", adjacentVertices.toString());
+    }
 
     protected GraphInterface getTestGraph(int vertexCount) {
         return new DirectedGraph(vertexCount);

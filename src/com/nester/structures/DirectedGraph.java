@@ -36,4 +36,23 @@ public class DirectedGraph extends Graph implements GraphInterface {
         adjacentVertices.get(firstVertex).add(secondVertex);
     }
 
+
+    /**
+     * Returns reversed graph (all graph edges reversed)
+     *
+     * @return Reversed graph
+     */
+    public DirectedGraph reverse() {
+        int vertexCount = getVertexCount();
+        DirectedGraph reversedGraph = new DirectedGraph(vertexCount);
+
+        for(int vertex = 0; vertex < vertexCount; vertex++) {
+            for(int adjacentVertex : getAdjacentVertices(vertex)) {
+                reversedGraph.addEdge(adjacentVertex, vertex);
+            }
+        }
+
+        return reversedGraph;
+    }
+
 }
