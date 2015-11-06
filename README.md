@@ -6,13 +6,23 @@ Algorithms written on Java
 
 
 ### Structures
-* Bag
 * Graph
 * Directed Graph
 
 ### Algorithms
 
-* Graphs
+#### Graphs Algorithms
+
+* Graphs (common)
   * Deep-first search
   * Breadth-first search
+
+
+* Directed Graphs
+  * Deep-first order
+  * Topological sort
+  * Kosaraju - Sharir algorithm
+
+
+* Undirected Graphs
   * Connected components (based on Deep-first search)
