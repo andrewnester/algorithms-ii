@@ -1,7 +1,6 @@
 package com.nester.helpers;
 
-import com.nester.structures.DirectedGraph;
-import com.nester.structures.Graph;
+import com.nester.structures.*;
 
 /**
  * Class GraphHelper
@@ -76,6 +75,11 @@ public class GraphHelper {
         return graph;
     }
 
+    /**
+     * Create directed graph with components for testing purposes
+     *
+     * @return Directed graph with components
+     */
     public static DirectedGraph createTestDirectedGraphWithComponents() {
         DirectedGraph graph = new DirectedGraph(13);
 
@@ -111,6 +115,68 @@ public class GraphHelper {
         graph.addEdge(11, 12);
 
         graph.addEdge(12, 9);
+
+        return graph;
+    }
+
+    /**
+     * Creates edge-weighted graph for testing purposes
+     *
+     * @return Edge-weighted graph
+     */
+    public static EdgeWeightedGraph createTestEdgeWeightedGraph() {
+
+        EdgeWeightedGraph graph = new EdgeWeightedGraph(8);
+        graph.addEdge(new Edge(1, 2, 0.36));
+        graph.addEdge(new Edge(4, 7, 0.37));
+        graph.addEdge(new Edge(0, 4, 0.38));
+        graph.addEdge(new Edge(6, 2, 0.40));
+        graph.addEdge(new Edge(2, 7, 0.34));
+        graph.addEdge(new Edge(4, 5, 0.35));
+        graph.addEdge(new Edge(6, 0, 0.58));
+        graph.addEdge(new Edge(3, 6, 0.52));
+        graph.addEdge(new Edge(0, 7, 0.16));
+        graph.addEdge(new Edge(5, 7, 0.28));
+        graph.addEdge(new Edge(1, 3, 0.29));
+        graph.addEdge(new Edge(1, 5, 0.32));
+        graph.addEdge(new Edge(2, 3, 0.17));
+        graph.addEdge(new Edge(1, 7, 0.19));
+        graph.addEdge(new Edge(0, 2, 0.26));
+        graph.addEdge(new Edge(6, 4, 0.93));
+
+        return graph;
+    }
+
+    /**
+     * Creates directed edge-weighted graph for testing purposes
+     *
+     * @return Directed edge-weighted graph
+     */
+    public static DirectedEdgeWeightedGraph createTestDirectedEdgeWeightedGraph() {
+
+        DirectedEdgeWeightedGraph graph = new DirectedEdgeWeightedGraph(8);
+        graph.addEdge(new DirectedEdge(0, 1, 5.0));
+        graph.addEdge(new DirectedEdge(0, 4, 9.0));
+        graph.addEdge(new DirectedEdge(0, 7, 8.0));
+
+        graph.addEdge(new DirectedEdge(1, 2, 12.0));
+        graph.addEdge(new DirectedEdge(1, 3, 15.0));
+        graph.addEdge(new DirectedEdge(1, 7, 4.0));
+
+        graph.addEdge(new DirectedEdge(2, 3, 3.0));
+        graph.addEdge(new DirectedEdge(2, 6, 11.0));
+
+        graph.addEdge(new DirectedEdge(3, 6, 9.0));
+
+        graph.addEdge(new DirectedEdge(4, 5, 4.0));
+        graph.addEdge(new DirectedEdge(4, 6, 20.0));
+        graph.addEdge(new DirectedEdge(4, 7, 5.0));
+
+        graph.addEdge(new DirectedEdge(5, 2, 1.0));
+        graph.addEdge(new DirectedEdge(5, 6, 13.0));
+
+        graph.addEdge(new DirectedEdge(7, 5, 6.0));
+        graph.addEdge(new DirectedEdge(7, 2, 7.0));
 
         return graph;
     }
