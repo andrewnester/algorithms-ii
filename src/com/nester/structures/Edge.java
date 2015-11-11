@@ -5,7 +5,7 @@ package com.nester.structures;
  *
  * Represents edge for edge-weighted graph
  */
-public class Edge {
+public class Edge implements Comparable<Edge> {
 
     private int firstVertex;
 

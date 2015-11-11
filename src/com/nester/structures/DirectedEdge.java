@@ -5,7 +5,7 @@ package com.nester.structures;
  * <p/>
  * Represents directed edge that is used to build directed edge-weighted graphs
  */
-public class DirectedEdge {
+public class DirectedEdge implements Comparable<DirectedEdge> {
 
     private int from;
 
@@ -44,6 +44,16 @@ public class DirectedEdge {
      */
     public double weight() {
         return weight;
+    }
+
+    public int compareTo(DirectedEdge edge) {
+        if (weight < edge.weight) {
+            return -1;
+        } else if (weight > edge.weight) {
+            return 1;
+        } else {
+            return 0;
+        }
     }
 
 }

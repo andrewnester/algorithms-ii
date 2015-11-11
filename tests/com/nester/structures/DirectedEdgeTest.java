@@ -1,5 +1,6 @@
 package com.nester.structures;
 
+import org.junit.Assert;
 import org.junit.Before;
 import org.junit.Test;
 
@@ -22,6 +23,17 @@ public class DirectedEdgeTest {
     @Test
     public void testTo() {
         assertEquals(2, edge.to());
+    }
+
+    @Test
+    public void testCompareTo()  {
+        DirectedEdge equalEdge = new DirectedEdge(5, 6, 0.678);
+        DirectedEdge lessEdge = new DirectedEdge(7, 8, 0.5);
+        DirectedEdge moreEdge = new DirectedEdge(3, 4, 1);
+
+        Assert.assertTrue(edge.compareTo(equalEdge) == 0);
+        Assert.assertTrue(edge.compareTo(lessEdge) == 1);
+        Assert.assertTrue(edge.compareTo(moreEdge) == -1);
     }
 
     @Test
