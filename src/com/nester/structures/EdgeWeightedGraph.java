@@ -41,6 +41,24 @@ public class EdgeWeightedGraph {
         return adjacentVertices.get(vertex);
     }
 
+    /**
+     * Returns all graph edges
+     *
+     * @return Graph edges
+     */
+    public Iterable<Edge> getEdges() {
+        ArrayList<Edge> edges = new ArrayList<>();
+        for(List<Edge> adjacentEdges: adjacentVertices) {
+            for(Edge edge: adjacentEdges) {
+                if(!edges.contains(edge)) {
+                    edges.add(edge);
+                }
+            }
+        }
+
+        return edges;
+    }
+
 
     public int getVertexCount() {
         return vertexCount;
