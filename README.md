@@ -8,8 +8,12 @@ Algorithms written on Java
 ### Structures
 * Graph
 * Directed Graph
+* Edge-weighted graphs
 
 ### Algorithms
+
+#### Basic
+ * Union Find
 
 #### Graphs Algorithms
 
@@ -19,6 +23,7 @@ Algorithms written on Java
 
 
 * Directed Graphs
+  * Cycle detection algorithm 
   * Deep-first order
   * Topological sort
   * Kosaraju - Sharir algorithm
@@ -26,3 +31,4 @@ Algorithms written on Java
 
 * Undirected Graphs
   * Connected components (based on Deep-first search)
+  * Kruskal Algorithm for Minimum Spanning Tree
