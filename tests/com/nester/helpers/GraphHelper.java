@@ -202,7 +202,6 @@ public class GraphHelper {
 
     public static DirectedEdgeWeightedGraph createTestDirectedNegativeCycledEdgeWeightedGraph() {
         DirectedEdgeWeightedGraph graph = new DirectedEdgeWeightedGraph(8);
-        graph.addEdge(new DirectedEdge(4, 5, 0.35));
         graph.addEdge(new DirectedEdge(5, 4, -0.66));
         graph.addEdge(new DirectedEdge(4, 7, 0.37));
         graph.addEdge(new DirectedEdge(5, 7, 0.28));
