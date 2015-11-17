@@ -3,12 +3,15 @@
 # Algorithms
 Algorithms written on Java
 
+Based on http://algs4.cs.princeton.edu/home/
+
 
 
 ### Structures
 * Graph
 * Directed Graph
 * Edge-weighted graphs
+* Index Priority Queue
 
 ### Algorithms
 
@@ -23,12 +26,15 @@ Algorithms written on Java
 
 
 * Directed Graphs
-  * Cycle detection algorithm 
+  * Cycle detection algorithm (for edge-weighted graphs too) 
   * Deep-first order
   * Topological sort
   * Kosaraju - Sharir algorithm
+  * Dijkstra algorithm
+  * Bellmann - Ford algorithm
 
 
 * Undirected Graphs
   * Connected components (based on Deep-first search)
   * Kruskal Algorithm for Minimum Spanning Tree
+  * Prim's algorithm (both lazy and eager implementations)
